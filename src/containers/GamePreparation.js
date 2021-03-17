@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import NumberOfPlayers from "./NumberOfPlayers";
 import PlayerNames from "./PlayerNames";
 import CharacterSelect from './CharacterSelect';
+import Player from "../component/Player";
 
 const stages = [
   "nbrOfPlayers",
@@ -24,9 +25,8 @@ const GamePreparation = () => {
 
   return (
     <div className="gamePreparation">
-      {
+      <Player />
 
-      }
       {stage === "nbrOfPlayers" ? <NumberOfPlayers advanceStage={advanceStage} /> : null}
       {stage === "playerNames" ? <PlayerNames advanceStage={advanceStage} /> : null}
       {

@@ -15,18 +15,7 @@ const CharacterSelect = ({ advanceStage }) => {
   const { players, setPlayers } = useContext(PlayerContext);
   const [currentPlayerSelect, setCurrentPlayerSelect] = useState(1);
 
-  // const setPlayerCharacter = (character) => {
-  //   let tmpPlayers = players;
-  //
-  //   for (let i = 0; i < tmpPlayers.length; i++) {
-  //     tmpPlayers[i].name = names[i];
-  //   }
-  //
-  //   setPlayers(tmpPlayers);
-  // };
-
   const setCharacter = (character) => {
-
     if (players.find(player => player.character === character))
       alert("No.");
     else {
@@ -38,28 +27,12 @@ const CharacterSelect = ({ advanceStage }) => {
       });
 
       setPlayers(tmpPlayers);
+      setCurrentPlayerSelect(currentPlayerSelect + 1);
     }
-
-    setCurrentPlayerSelect(currentPlayerSelect + 1);
-
-      // this.setState((prevState) => ({
-      //   currentPlayerSelect: prevState.currentPlayerSelect + 1,
-      //   players: [
-      //     ...prevState.players, {
-      //       number: prevState.currentPlayerSelect,
-      //       pawn,
-      //     }
-      //   ],
-      //   showSetPlayerNames: false,
-      //   readyToStart: prevState.currentPlayerSelect === 2 ? true : false,
-      // }));
-
   };
-
 
   return (
     <div className="d-flex flex-column justify-content-around align-items-center">
-
       {
         players.map(player => (
           player.number === currentPlayerSelect ?
@@ -74,18 +47,9 @@ const CharacterSelect = ({ advanceStage }) => {
           ))
         }
       </div>
-
-      {/*<div*/}
-      {/*  className="container"*/}
-      {/*  onClick={() => setCharacter(character)}>*/}
-      {/*  <div>*/}
-
-      {/*    src={`./images/${pawn}-pawn.png`}/>*/}
-      {/*  <img*/}
-      {/*    src={`./images/${pawn}.png`}/>*/}
-      {/*</div>*/}
-
-      <Button onClick={advanceStage}>Continue</Button>
+      {
+        currentPlayerSelect > players.length ? <Button onClick={advanceStage}>Start game</Button> : null
+      }
     </div>
   )
 };

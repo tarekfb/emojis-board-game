@@ -3,7 +3,9 @@ import React, {useContext} from "react";
 import Button from 'react-bootstrap/Button';
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
+
 import PlayerContext from "../PlayerContext";
+import Player from "../component/Player";
 
 const NumberOfPlayers = ({ advanceStage }) => {
   const { players, setPlayers } = useContext(PlayerContext);
@@ -15,7 +17,6 @@ const NumberOfPlayers = ({ advanceStage }) => {
       const player = {
         number: i,
         name: `Player_${i}`,
-        character: "",
       }
       tmpPlayers.push(player);
     }
@@ -29,6 +30,7 @@ const NumberOfPlayers = ({ advanceStage }) => {
 
   return (
     <div className="d-flex flex-column">
+      <Player />
       <h1>How many players?</h1>
 
       <InputGroup className="mb-3">

@@ -6,12 +6,13 @@ const Player = () => {
   const { players } = useContext(PlayerContext);
 
   return (
-    <div className="players">
+    <div className="d-flex flex-row justify-content-between">
     {
       players.map(player => (
         <div key={player.number} className="player">
+          <p>{player.number}</p>
           <p>{player.name}</p>
-
+          <p>{player.character}</p>
         </div>
       ))
     }
