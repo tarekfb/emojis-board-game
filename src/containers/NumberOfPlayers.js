@@ -1,10 +1,32 @@
-import React from "react";
+import React, {useContext} from "react";
 
 import Button from 'react-bootstrap/Button';
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
+import PlayerContext from "../PlayerContext";
 
 const NumberOfPlayers = ({ advanceStage }) => {
+  const { players, setPlayers } = useContext(PlayerContext);
+
+  const setNumberOfPlayers = (number) => {
+    let tmpPlayers = players;
+
+    for (let i = 1; i < number; i++) {
+      const player = {
+        number: i,
+        name: `Player_${i}`,
+        character: "",
+      }
+      tmpPlayers.push(player);
+    }
+
+    // Should be an easier way to do this
+    // Especially since we don't care about history
+    // Probably using ..players, etc
+    setPlayers(tmpPlayers);
+
+  };
+
   return (
     <div className="d-flex flex-column">
       <h1>How many players?</h1>
@@ -16,7 +38,11 @@ const NumberOfPlayers = ({ advanceStage }) => {
         />
       </InputGroup>
 
-      <Button onClick={advanceStage}>Continue</Button>
+      <Button onClick={() => {
+        advanceStage();
+        setNumberOfPlayers(3);
+        }
+      }>Continue</Button>
     </div>
   )
 };

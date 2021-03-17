@@ -11,26 +11,6 @@ const stages = [
   "questions",
 ];
 
-const setCharacter = (character) => {
-
-  console.log(character);
-
-  // if (this.state.players.find(player => player.char === pawn))
-  //   alert("No");
-  // else {
-  //   this.setState((prevState) => ({
-  //     currentPlayerSelect: prevState.currentPlayerSelect + 1,
-  //     players: [
-  //       ...prevState.players, {
-  //         number: prevState.currentPlayerSelect,
-  //         pawn,
-  //       }
-  //     ],
-  //     showSetPlayerNames: false,
-  //     readyToStart: prevState.currentPlayerSelect === 2 ? true : false,
-  //   }));
-  // }
-};
 
 // need to change set of nbr of players
 // should probably use context for these, as top level component needs to know
@@ -53,7 +33,6 @@ const GamePreparation = () => {
         stage === "characterSelect" ?
         <CharacterSelect
           advanceStage={advanceStage}
-          setCharacter={setCharacter}
         />
         : null
       }
