@@ -7,7 +7,7 @@ import FormControl from "react-bootstrap/FormControl";
 import PlayerContext from "../PlayerContext";
 import Player from "../component/Player";
 
-const NumberOfPlayers = ({ advanceStage }) => {
+const NumberOfPlayers = ({ advanceStage, assumeDefaultSetup }) => {
   const { players, setPlayers } = useContext(PlayerContext);
 
 
@@ -44,11 +44,14 @@ const NumberOfPlayers = ({ advanceStage }) => {
         />
       </InputGroup>
 
-      <Button onClick={() => {
-        advanceStage();
-        setNumberOfPlayers(2);
+      <Button
+        onClick={() => {
+          advanceStage();
+          setNumberOfPlayers(2);
+          }
         }
-      }>Continue</Button>
+        className="mb-3">Continue</Button>
+      <Button onClick={() => assumeDefaultSetup(3)}>Quick play - default setup</Button>
     </div>
   )
 };

@@ -1,8 +1,8 @@
-import React, {useContext} from "react";
+import React from "react";
 
 import Button from 'react-bootstrap/Button';
 
-const Actions = ({ advanceStage, questions, setQuestions }) => {
+const Actions = ({ advanceStage, actions, setActions }) => {
   const setCustomActions = () => {
     console.log("Custom actions isn't implemented yet");
     advanceStage();
