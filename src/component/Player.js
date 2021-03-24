@@ -12,7 +12,7 @@ const Player = () => {
         <div key={player.number} className="player">
           <p>{player.number}</p>
           <p>{player.name}</p>
-          <p>{player.character}</p>
+          <p style={{ fontSize: "40px"}}>{player.character}</p>
         </div>
       ))
     }

@@ -6,35 +6,37 @@ import Characters from './Characters';
 import Player from "../component/Player";
 import Actions from "./Actions";
 
-const stages = [
-  "nbrOfPlayers",
-  "playerNames",
-  "characters",
-  "actions",
-];
-
-// need to change set of nbr of players
-// should probably use context for these, as top level component needs to know
-const GamePreparation = () => {
+const GamePreparation = ({ actions, startGame, stages }) => {
   const [stage, setStage] = useState(stages[0]);
 
   const advanceStage = () => {
     let i = stages.indexOf(stage);
     setStage(stages[i + 1])
-    console.log("index is " + stages.indexOf(stage));
-    console.log("stages length is" + stages.length);
-    if (stages.indexOf(stage + 1) === stage.length){
-      console.log("equal");
+
+    if (stages.indexOf(stage) === stages.length - 1){
+      startGame();
+    }
+  };
+
+  const renderSwitch = (component) => {
+    switch(component) {
+      case 'nbrOfPlayers':
+        return <NumberOfPlayers advanceStage={advanceStage} />;
+      case 'playerNames':
+        return <PlayerNames advanceStage={advanceStage} />;
+      case 'characters':
+        return <Characters advanceStage={advanceStage}/>;
+      case 'actions':
+        return <Actions advanceStage={advanceStage} actions={actions}/>;
+      default:
+        return null;
     }
   };
 
   return (
     <div className="gamePreparation">
         <Player />
-        {stage === "nbrOfPlayers" ? <NumberOfPlayers advanceStage={advanceStage} /> : null}
-        {stage === "playerNames" ? <PlayerNames advanceStage={advanceStage} /> : null}
-        {stage === "characters" ? <Characters advanceStage={advanceStage}/> : null}
-        {stage === "actions" ? <Actions advanceStage={advanceStage}/> : null}
+        {renderSwitch(stage)}
     </div>
   )
 };

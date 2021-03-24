@@ -40,7 +40,7 @@ const PlayerNames = ({ advanceStage }) => {
       <Button
         onClick={ () => {
             advanceStage();
-            setPlayerNames(["Hjalmar", "xXxGöranxXx"])
+            setPlayerNames(["Hjalmar", "xXxGöranxXx"]);
           }
         }
       >Continue</Button>

@@ -50,7 +50,7 @@ const Characters = ({ advanceStage }) => {
         }
       </div>
       {
-        currentPlayerSelect > players.length ? <Button onClick={advanceStage}>Start game</Button> : null
+        currentPlayerSelect > players.length ? <Button onClick={advanceStage}>Continue</Button> : null
       }
     </div>
   )
