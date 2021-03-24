@@ -10,10 +10,14 @@ import Player from "../component/Player";
 const NumberOfPlayers = ({ advanceStage }) => {
   const { players, setPlayers } = useContext(PlayerContext);
 
+
   const setNumberOfPlayers = (number) => {
     let tmpPlayers = players;
 
-    for (let i = 1; i < number; i++) {
+    // Since we want player.number and player.name to always be >1
+    // we start forloop at 1
+    // But we still want number arg to be accurate, therefore check i < number + 1
+    for (let i = 1; i < number + 1; i++) {
       const player = {
         number: i,
         name: `Player_${i}`,
@@ -42,7 +46,7 @@ const NumberOfPlayers = ({ advanceStage }) => {
 
       <Button onClick={() => {
         advanceStage();
-        setNumberOfPlayers(3);
+        setNumberOfPlayers(2);
         }
       }>Continue</Button>
     </div>

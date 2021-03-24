@@ -11,11 +11,12 @@ const emojis = [
   "🤑"
 ];
 
-const CharacterSelect = ({ advanceStage }) => {
+const Characters = ({ advanceStage }) => {
   const { players, setPlayers } = useContext(PlayerContext);
   const [currentPlayerSelect, setCurrentPlayerSelect] = useState(1);
 
   const setCharacter = (character) => {
+
     if (players.find(player => player.character === character))
       alert("No.");
     else {
@@ -24,6 +25,7 @@ const CharacterSelect = ({ advanceStage }) => {
       tmpPlayers.forEach(player => {
         if (player.number === currentPlayerSelect)
           player.character = character;
+          console.log(player.character)
       });
 
       setPlayers(tmpPlayers);
@@ -54,4 +56,4 @@ const CharacterSelect = ({ advanceStage }) => {
   )
 };
 
-export default CharacterSelect;
+export default Characters;
