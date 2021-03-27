@@ -16,7 +16,6 @@ const Characters = ({ advanceStage }) => {
   const [currentPlayerSelect, setCurrentPlayerSelect] = useState(1);
 
   const setCharacter = (character) => {
-
     if (players.find(player => player.character === character))
       alert("No.");
     else {
@@ -25,11 +24,14 @@ const Characters = ({ advanceStage }) => {
       tmpPlayers.forEach(player => {
         if (player.number === currentPlayerSelect)
           player.character = character;
-          console.log(player.character)
       });
 
       setPlayers(tmpPlayers);
       setCurrentPlayerSelect(currentPlayerSelect + 1);
+    }
+
+    if (currentPlayerSelect === players.length){
+      advanceStage();
     }
   };
 
@@ -45,13 +47,16 @@ const Characters = ({ advanceStage }) => {
       <div className="container d-flex flex-row mb-3">
         {
           emojis.map(emoji => (
-              <div key={emoji} onClick={() => setCharacter(emoji)} style={{fontSize: "75px", cursor: "pointer"}}>{emoji}</div>
+              <div
+                key={emoji}
+                onClick={() => setCharacter(emoji)}
+                style={
+                  {fontSize: "75px", cursor: "pointer"}
+                }
+              >{emoji}</div>
           ))
         }
       </div>
-      {
-        currentPlayerSelect > players.length ? <Button onClick={advanceStage}>Continue</Button> : null
-      }
     </div>
   )
 };

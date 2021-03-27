@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
 
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -7,14 +7,34 @@ import PlayerContext from "../PlayerContext";
 
 const PlayerNames = ({ advanceStage }) => {
   const { players, setPlayers } = useContext(PlayerContext);
+  const [ playerNameInputValues, setPlayerNameInputValues ] = useState([]);
 
-  const setPlayerNames = (names) => {
+  useEffect(() => {
+    let inputList = [];
+    for (let i = 1; i < players.length + 1; i++) {
+      inputList.push({["value" + i]: ""});
+    }
+    setPlayerNameInputValues(inputList);
+  }, []) ;
+
+  const updatePlayerNameInputValue = (event, playerNumber) => {
+    let updatedValue = {["value" + playerNumber]: event.target.value};
+
+    let tmpArray = playerNameInputValues;
+    for (let i = 1; i < playerNameInputValues.length + 1 ; i++) {
+      if (i === playerNumber)
+        tmpArray[playerNumber - 1] = updatedValue;
+    }
+     setPlayerNameInputValues(tmpArray);
+  };
+
+  const setPlayerNames = () => {
     let tmpPlayers = players;
 
-    for (let i = 0; i < tmpPlayers.length; i++) {
-      tmpPlayers[i].name = names[i];
+    for (let i = 0; i < playerNameInputValues.length; i++) {
+      let tmpIndex = playerNameInputValues[i];
+      tmpPlayers[i].name = tmpIndex["value" + (i + 1)];
     }
-
     setPlayers(tmpPlayers);
   };
 
@@ -29,6 +49,8 @@ const PlayerNames = ({ advanceStage }) => {
                 <InputGroup.Text id={`player${player.number}`}>Player {player.number}</InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl
+                onChange={event => updatePlayerNameInputValue(event, player.number)}
+                value={playerNameInputValues["value" + player.number]}
                 placeholder="Kalle Kula"
                 aria-label="Name"
               />
@@ -36,15 +58,13 @@ const PlayerNames = ({ advanceStage }) => {
           </div>
         ))
       }
-
       <Button
         onClick={ () => {
-            advanceStage();
-            setPlayerNames(["Hjalmar", "xXxGöranxXx"]);
+          setPlayerNames();
+          advanceStage();
           }
         }
       >Continue</Button>
-
     </div>
   )
 };

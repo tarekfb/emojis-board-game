@@ -37,7 +37,6 @@ function App() {
   const advanceStage = () => {
     let i = stages.indexOf(stage);
     setStage(stages[i + 1])
-    console.log(players)
   };
 
   const assumeDefaultSetup = (nbrOfPlayers) => {
