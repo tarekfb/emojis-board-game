@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import PlayerContext from "../PlayerContext";
+import {isString} from "../helpers/validation";
 
 const PlayerNames = ({ advanceStage }) => {
   const { players, setPlayers } = useContext(PlayerContext);
@@ -31,11 +32,23 @@ const PlayerNames = ({ advanceStage }) => {
   const setPlayerNames = () => {
     let tmpPlayers = players;
 
+    let validated = true;
     for (let i = 0; i < playerNameInputValues.length; i++) {
       let tmpIndex = playerNameInputValues[i];
-      tmpPlayers[i].name = tmpIndex["value" + (i + 1)];
+
+      if (isString(tmpIndex["value" + (i + 1)], 15)){
+        tmpPlayers[i].name = tmpIndex["value" + (i + 1)];
+        console.log(tmpIndex["value" + (i + 1)].length)
+      } else
+        validated = false;
     }
-    setPlayers(tmpPlayers);
+
+    if (validated){
+      setPlayers(tmpPlayers);
+      advanceStage();
+    } else {
+      alert("not validated");
+    }
   };
 
   return (
@@ -61,7 +74,6 @@ const PlayerNames = ({ advanceStage }) => {
       <Button
         onClick={ () => {
           setPlayerNames();
-          advanceStage();
           }
         }
       >Continue</Button>

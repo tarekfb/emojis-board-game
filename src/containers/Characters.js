@@ -1,9 +1,9 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 
 import Button from 'react-bootstrap/Button';
 import PlayerContext from "../PlayerContext";
 
-const emojis = [
+let emojis = [
   "🙃",
   "🥳",
   "🤯",
@@ -13,12 +13,30 @@ const emojis = [
 
 const Characters = ({ advanceStage }) => {
   const { players, setPlayers } = useContext(PlayerContext);
-  const [currentPlayerSelect, setCurrentPlayerSelect] = useState(1);
+  const [ currentPlayerSelect, setCurrentPlayerSelect ] = useState(1);
+  const [ isCharClickedList, setIsCharClickedList ] = useState({});
+
+  useEffect(() => {
+
+    // Useeffect runs before the variable emojis is initialized
+    emojis = [
+      "🙃",
+      "🥳",
+      "🤯",
+      "🥶",
+      "🤑"
+    ];
+
+    let charState = {};
+    emojis.forEach(char => {
+      charState[char] = false;
+    });
+    setIsCharClickedList(charState);
+  }, []) ;
 
   const setCharacter = (character) => {
-    if (players.find(player => player.character === character))
-      alert("No.");
-    else {
+    // Set character
+    if (!players.find(player => player.character === character)){
       let tmpPlayers = players;
 
       tmpPlayers.forEach(player => {
@@ -28,11 +46,19 @@ const Characters = ({ advanceStage }) => {
 
       setPlayers(tmpPlayers);
       setCurrentPlayerSelect(currentPlayerSelect + 1);
+
+      // Set state: is character selected?
+      let tmpObj = isCharClickedList;
+      tmpObj[character] = true;
+      setIsCharClickedList(tmpObj);
+
+      // Advance game
+      if (currentPlayerSelect === players.length){
+        advanceStage();
+      }
     }
 
-    if (currentPlayerSelect === players.length){
-      advanceStage();
-    }
+
   };
 
   return (
@@ -48,6 +74,7 @@ const Characters = ({ advanceStage }) => {
         {
           emojis.map(emoji => (
               <div
+                className={isCharClickedList[emoji] ? 'selected' : null}
                 key={emoji}
                 onClick={() => setCharacter(emoji)}
                 style={
