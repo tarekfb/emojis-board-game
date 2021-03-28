@@ -3,7 +3,7 @@ import React, {useContext, useEffect, useState} from "react";
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-import PlayerContext from "../PlayerContext";
+import PlayerContext from "../helpers/PlayerContext";
 import {isString} from "../helpers/validation";
 
 const PlayerNames = ({ advanceStage }) => {
@@ -38,7 +38,6 @@ const PlayerNames = ({ advanceStage }) => {
 
       if (isString(tmpIndex["value" + (i + 1)], 15)){
         tmpPlayers[i].name = tmpIndex["value" + (i + 1)];
-        console.log(tmpIndex["value" + (i + 1)].length)
       } else
         validated = false;
     }

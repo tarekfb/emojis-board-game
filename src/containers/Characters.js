@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 
 import Button from 'react-bootstrap/Button';
-import PlayerContext from "../PlayerContext";
+import PlayerContext from "../helpers/PlayerContext";
 
 let emojis = [
   "🙃",

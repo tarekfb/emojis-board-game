@@ -1,22 +1,21 @@
 import React, {useContext} from "react";
 
-import PlayerContext from "../PlayerContext";
+import PlayerContext from "../helpers/PlayerContext";
 
 const Player = () => {
   const { players } = useContext(PlayerContext);
 
   return (
-    <div className="d-flex flex-row justify-content-between">
+    <div className="d-flex justify-content-between align-items-center w-50">
     {
       players.map(player => (
-        <div key={player.number} className="player">
-          <p>{player.name}</p>
-          <p style={{ fontSize: "40px"}}>{player.character}</p>
+        <div key={player.number}>
+          <p className="text-center" style={{ fontSize: "40px"}}>{player.name}</p>
+          <p className="text-center" style={{ fontSize: "40px"}}>{player.character}</p>
         </div>
       ))
     }
     </div>
-
   )
 };
 

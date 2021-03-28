@@ -2,7 +2,7 @@ import './App.css';
 import React, {useState} from "react";
 
 import Game from './containers/Game';
-import PlayerContext from './PlayerContext';
+import PlayerContext from './helpers/PlayerContext';
 import NumberOfPlayers from "./containers/NumberOfPlayers";
 import PlayerNames from "./containers/PlayerNames";
 import Characters from "./containers/Characters";
