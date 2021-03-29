@@ -57,7 +57,7 @@
 .game-square {
   text-align: center;
   color: white;
-  background: red;
+  background: darkblue;
   outline: 2px solid white;
   display: flex;
   justify-content: center;
