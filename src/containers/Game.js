@@ -6,15 +6,31 @@ import PlayerContext from "../helpers/PlayerContext";
 // this component has errors: location is unknown
 // no location property has been implemented for player
 const Game = ({  }) => {
-  const { players } = useContext(PlayerContext);
+  const { players, setPlayers, currentPlayer, setCurrentPlayer } = useContext(PlayerContext);
   const squares = generateSquares();
 
-  // let playerLocations = [];
-  // if (squares.length > 0) {
-  //   playerLocations = players.map(player => (
-  //     squares[player.location % squares.length]
-  //   ));
-  // }
+  let playerLocations = [];
+  if (squares.length > 0) {
+    playerLocations = players.map(player => (
+      squares[player.location % squares.length]
+    ));
+  }
+
+  const movePlayer = (number) => {
+    let tmpPlayers = players;
+
+    tmpPlayers.forEach(player => {
+      if (player.number === currentPlayer)
+        player.location = player.location + number;
+    });
+
+    setPlayers(tmpPlayers);
+
+    if (currentPlayer + 1 > players.length)
+      setCurrentPlayer(1);
+    else
+      setCurrentPlayer(currentPlayer + 1);
+  }
 
   function generateSquares() {
     let gridSize = 5;
@@ -75,29 +91,29 @@ const Game = ({  }) => {
             className="game-square">
             {
               square.type !== 'start' ?
-                '.' :
-                '.'
+                <span>⬛</span> :
+                'start'
             }
           </div>
         ))
       }
-      {/*{*/}
-      {/*  playerLocations.map((location, i) => {*/}
-      {/*    const player = players[i];*/}
-      {/*    return (*/}
-      {/*      <div*/}
-      {/*        key={player.number}*/}
-      {/*        style={{*/}
-      {/*          gridRow: location.row,*/}
-      {/*          gridColumn: location.col*/}
-      {/*        }}*/}
-      {/*        className="player-avatar">*/}
-      {/*          <span>player.character</span>*/}
-      {/*      </div>*/}
-      {/*    )*/}
-      {/*  })*/}
-      {/*}*/}
-     <BoardMiddle  squares={squares} />
+      {
+        playerLocations.map((location, i) => {
+          const player = players[i];
+          return (
+            <div
+              key={player.number}
+              style={{
+                gridRow: location.row,
+                gridColumn: location.col
+              }}
+              className="player-avatar">
+                <span>{player.character}</span>
+            </div>
+          )
+        })
+      }
+     <BoardMiddle  squares={squares} movePlayer={movePlayer} />
     </div>
   )
 };
