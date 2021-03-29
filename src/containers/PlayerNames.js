@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import PlayerContext from "../helpers/PlayerContext";
-import {isString} from "../helpers/validation";
+import {isString} from "../helpers/Validation";
 
 const PlayerNames = ({ advanceStage }) => {
   const { players, setPlayers } = useContext(PlayerContext);
@@ -35,7 +35,7 @@ const PlayerNames = ({ advanceStage }) => {
     let validated = true;
     for (let i = 0; i < playerNameInputValues.length; i++) {
       let tmpIndex = playerNameInputValues[i];
-      
+
       if (isString(tmpIndex["value" + (i + 1)], 15) && !alreadyExistsInList() ){
         tmpPlayers[i].name = tmpIndex["value" + (i + 1)];
       } else

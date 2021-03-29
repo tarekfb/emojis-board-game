@@ -6,7 +6,7 @@ import FormControl from "react-bootstrap/FormControl";
 
 import PlayerContext from "../helpers/PlayerContext";
 import Player from "../component/Player";
-import {isNumeric} from "../helpers/validation";
+import {isNumeric} from "../helpers/Validation";
 
 const NumberOfPlayers = ({ advanceStage, assumeDefaultSetup }) => {
   const { players, setPlayers } = useContext(PlayerContext);

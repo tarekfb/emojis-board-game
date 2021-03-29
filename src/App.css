@@ -1,6 +1,7 @@
 .App {
   width: 100%;
   height: 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,4 +44,36 @@
   40%, 60% {
     transform: translate3d(4px, 0, 0);
   }
+}
+
+.game-board {
+  display: grid;
+  width: 60vw;
+  height: 60vw;
+  max-width: 70vh;
+  max-height: 70vh;
+}
+
+.game-square {
+  text-align: center;
+  color: white;
+  background: red;
+  outline: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.game-square span {
+}
+
+.board-middle {
+  grid-column: 2 / 5;
+  grid-row: 2 / 5;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

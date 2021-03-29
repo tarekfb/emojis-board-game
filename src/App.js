@@ -6,15 +6,8 @@ import PlayerContext from './helpers/PlayerContext';
 import NumberOfPlayers from "./containers/NumberOfPlayers";
 import PlayerNames from "./containers/PlayerNames";
 import Characters from "./containers/Characters";
-import Actions from "./containers/Actions";
+import { Actions, actionBase } from "./containers/Actions";
 import Player from "./component/Player";
-
-// separate file?
-const defaultActions = {
-  1: "Take 1 drink",
-  2: "Do something",
-  3: "Do something else"
-}
 
 const stages = [
   "nbrOfPlayers",
@@ -25,13 +18,9 @@ const stages = [
   "postGame"
 ];
 
-const startGame = () => {
-
-};
-
 function App() {
   const [players, setPlayers] = useState([]);
-  const [actions, setActions] = useState(defaultActions);
+  const [actions, setActions] = useState(actionBase);
   const [stage, setStage] = useState(stages[0]);
 
   const advanceStage = () => {
@@ -40,7 +29,7 @@ function App() {
   };
 
   const assumeDefaultSetup = (nbrOfPlayers) => {
-    const emojis = [
+    const characters = [
       "🙃",
       "🥳",
       "🤯",
@@ -54,7 +43,7 @@ function App() {
       const player = {
         number: i,
         name: `Player_${i}`,
-        character: emojis[i - 1]
+        character: characters[i - 1]
       }
       defaultPlayers.push(player);
     }
@@ -85,7 +74,7 @@ function App() {
   return (
     <div className="App">
       <PlayerContext.Provider value={{ players, setPlayers }}>
-        <Player />
+        <Player className=""/>
         {renderSwitch(stage)}
       </PlayerContext.Provider>
     </div>
