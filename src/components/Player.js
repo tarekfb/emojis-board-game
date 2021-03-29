@@ -10,8 +10,8 @@ const Player = () => {
     {
       players.map(player => (
         <div key={player.number}>
-          <p className="text-center" style={{ fontSize: "40px"}}>{player.name}</p>
-          <p className="text-center" style={{ fontSize: "40px"}}>{player.character}</p>
+          <p className="text-center" style={{ fontSize: "35px"}}>{player.name}</p>
+          <p className="text-center" style={{ fontSize: "60px"}}>{player.character}</p>
         </div>
       ))
     }

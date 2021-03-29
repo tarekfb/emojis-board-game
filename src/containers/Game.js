@@ -1,18 +1,20 @@
 import React, { useContext } from "react";
+
+import BoardMiddle from '../components/BoardMiddle';
 import PlayerContext from "../helpers/PlayerContext";
 
 // this component has errors: location is unknown
 // no location property has been implemented for player
 const Game = ({  }) => {
-  const { players, setPlayers } = useContext(PlayerContext);
+  const { players } = useContext(PlayerContext);
   const squares = generateSquares();
 
-  let playerLocations = [];
-  if (squares.length > 0) {
-    playerLocations = players.map(player => (
-      squares[player.location % squares.length]
-    ));
-  }
+  // let playerLocations = [];
+  // if (squares.length > 0) {
+  //   playerLocations = players.map(player => (
+  //     squares[player.location % squares.length]
+  //   ));
+  // }
 
   function generateSquares() {
     let gridSize = 5;
@@ -73,32 +75,29 @@ const Game = ({  }) => {
             className="game-square">
             {
               square.type !== 'start' ?
-                'thing' :
-                'thing'
+                '.' :
+                '.'
             }
           </div>
         ))
       }
-      {
-        playerLocations.map((location, i) => {
-          const player = players[i];
-          return (
-            <div
-              key={player.number}
-              style={{
-                gridRow: location.row,
-                gridColumn: location.col
-              }}
-              className="player-avatar">
-                <span>player.character</span>
-            </div>
-          )
-        })
-      }
-      <div
-        className="board-middle">
-        <h3>middle</h3>
-      </div>
+      {/*{*/}
+      {/*  playerLocations.map((location, i) => {*/}
+      {/*    const player = players[i];*/}
+      {/*    return (*/}
+      {/*      <div*/}
+      {/*        key={player.number}*/}
+      {/*        style={{*/}
+      {/*          gridRow: location.row,*/}
+      {/*          gridColumn: location.col*/}
+      {/*        }}*/}
+      {/*        className="player-avatar">*/}
+      {/*          <span>player.character</span>*/}
+      {/*      </div>*/}
+      {/*    )*/}
+      {/*  })*/}
+      {/*}*/}
+     <BoardMiddle  squares={squares} />
     </div>
   )
 };

@@ -6,9 +6,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  background: black;
   color: white;
+
+  background: rgb(3,1,48);
+  background: linear-gradient(90deg, rgba(3,1,48,1) 17%, rgba(47,44,77,1) 82%, rgba(29,79,89,1) 100%);
 }
 
 .selected {
@@ -57,7 +58,7 @@
 .game-square {
   text-align: center;
   color: white;
-  background: darkblue;
+  background: black;
   outline: 2px solid white;
   display: flex;
   justify-content: center;
@@ -69,11 +70,12 @@
 }
 
 .board-middle {
-  grid-column: 2 / 5;
-  grid-row: 2 / 5;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+}
+.die {
+  font-size: 10em;
 }
