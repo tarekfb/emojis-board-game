@@ -3,8 +3,8 @@ import React, {useContext, useEffect, useState} from "react";
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-import PlayerContext from "../PlayerContext";
-import {isString} from "../helpers/validation";
+import PlayerContext from "../helpers/PlayerContext";
+import {isString} from "../helpers/Validation";
 
 const PlayerNames = ({ advanceStage }) => {
   const { players, setPlayers } = useContext(PlayerContext);
@@ -36,9 +36,8 @@ const PlayerNames = ({ advanceStage }) => {
     for (let i = 0; i < playerNameInputValues.length; i++) {
       let tmpIndex = playerNameInputValues[i];
 
-      if (isString(tmpIndex["value" + (i + 1)], 15)){
+      if (isString(tmpIndex["value" + (i + 1)], 15) && !alreadyExistsInList() ){
         tmpPlayers[i].name = tmpIndex["value" + (i + 1)];
-        console.log(tmpIndex["value" + (i + 1)].length)
       } else
         validated = false;
     }
@@ -49,6 +48,11 @@ const PlayerNames = ({ advanceStage }) => {
     } else {
       alert("not validated");
     }
+  };
+
+  const alreadyExistsInList = () => {
+    // this method should check if 2x player has same name
+    return false;
   };
 
   return (

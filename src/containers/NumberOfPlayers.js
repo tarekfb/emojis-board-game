@@ -4,9 +4,9 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 
-import PlayerContext from "../PlayerContext";
-import Player from "../component/Player";
-import {isNumeric} from "../helpers/validation";
+import PlayerContext from "../helpers/PlayerContext";
+import Player from "../components/Player";
+import {isNumeric} from "../helpers/Validation";
 
 const NumberOfPlayers = ({ advanceStage, assumeDefaultSetup }) => {
   const { players, setPlayers } = useContext(PlayerContext);

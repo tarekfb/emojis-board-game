@@ -1,34 +1,16 @@
 import React, {useContext, useEffect, useState} from "react";
 
-import Button from 'react-bootstrap/Button';
-import PlayerContext from "../PlayerContext";
-
-let emojis = [
-  "🙃",
-  "🥳",
-  "🤯",
-  "🥶",
-  "🤑"
-];
+import PlayerContext from "../helpers/PlayerContext";
+import { fetchCharacterList } from "../helpers/Characters";
 
 const Characters = ({ advanceStage }) => {
-  const { players, setPlayers } = useContext(PlayerContext);
-  const [ currentPlayerSelect, setCurrentPlayerSelect ] = useState(1);
+  const { players, setPlayers, currentPlayer, setCurrentPlayer } = useContext(PlayerContext);
   const [ isCharClickedList, setIsCharClickedList ] = useState({});
+  const [ characters ]  = useState(fetchCharacterList(5));
 
   useEffect(() => {
-
-    // Useeffect runs before the variable emojis is initialized
-    emojis = [
-      "🙃",
-      "🥳",
-      "🤯",
-      "🥶",
-      "🤑"
-    ];
-
     let charState = {};
-    emojis.forEach(char => {
+    characters.forEach(char => {
       charState[char] = false;
     });
     setIsCharClickedList(charState);
@@ -40,12 +22,12 @@ const Characters = ({ advanceStage }) => {
       let tmpPlayers = players;
 
       tmpPlayers.forEach(player => {
-        if (player.number === currentPlayerSelect)
+        if (player.number === currentPlayer)
           player.character = character;
       });
 
       setPlayers(tmpPlayers);
-      setCurrentPlayerSelect(currentPlayerSelect + 1);
+      setCurrentPlayer(currentPlayer + 1);
 
       // Set state: is character selected?
       let tmpObj = isCharClickedList;
@@ -53,26 +35,24 @@ const Characters = ({ advanceStage }) => {
       setIsCharClickedList(tmpObj);
 
       // Advance game
-      if (currentPlayerSelect === players.length){
+      if (currentPlayer === players.length){
         advanceStage();
       }
     }
-
-
   };
 
   return (
     <div className="d-flex flex-column justify-content-around align-items-center">
       {
         players.map(player => (
-          player.number === currentPlayerSelect ?
+          player.number === currentPlayer ?
             <h1 key={player.number}>{player.name}, choose your emoji!</h1> :
             null
         ))
       }
       <div className="container d-flex flex-row mb-3">
         {
-          emojis.map(emoji => (
+          characters.map(emoji => (
               <div
                 className={isCharClickedList[emoji] ? 'selected' : null}
                 key={emoji}
