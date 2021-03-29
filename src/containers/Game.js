@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, {useContext, useState} from "react";
 
 import BoardMiddle from '../components/BoardMiddle';
 import PlayerContext from "../helpers/PlayerContext";
+import { fetchRandomAction } from "../helpers/Actions";
 
 // this component has errors: location is unknown
 // no location property has been implemented for player
 const Game = ({  }) => {
   const { players, setPlayers, currentPlayer, setCurrentPlayer } = useContext(PlayerContext);
+  const [ currentAction, setCurrentAction ] = useState("");
   const squares = generateSquares();
 
   let playerLocations = [];
@@ -30,6 +32,8 @@ const Game = ({  }) => {
       setCurrentPlayer(1);
     else
       setCurrentPlayer(currentPlayer + 1);
+
+    setCurrentAction(fetchRandomAction());
   }
 
   function generateSquares() {
@@ -51,11 +55,11 @@ const Game = ({  }) => {
         row, col
       };
 
-      if (i % 2 !== 0) {
-        //square.type = player_1.pawn;
-      } else if (i % 2 === 0) {
-        //square.type = player_2.pawn;
-      }
+      // if (i % 2 !== 0) {
+      //   square.type = player_1.pawn;
+      // } else if (i % 2 === 0) {
+      //   square.type = player_2.pawn;
+      // }
 
       // if (i % 3 === 0) {
       //   square.type = "face-off";
@@ -74,7 +78,6 @@ const Game = ({  }) => {
         row --;
       }
     }
-
     return squares;
   };
 
@@ -91,7 +94,7 @@ const Game = ({  }) => {
             className="game-square">
             {
               square.type !== 'start' ?
-                <span>⬛</span> :
+                <span>⬛</span> : // mostly used to keep grids from changing size
                 'start'
             }
           </div>
@@ -113,7 +116,7 @@ const Game = ({  }) => {
           )
         })
       }
-     <BoardMiddle  squares={squares} movePlayer={movePlayer} />
+     <BoardMiddle squares={squares} movePlayer={movePlayer} currentAction={currentAction} />
     </div>
   )
 };

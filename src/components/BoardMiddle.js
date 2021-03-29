@@ -2,7 +2,7 @@ import React, {useContext, useState} from "react";
 import PlayerContext from "../helpers/PlayerContext";
 import {Button} from "react-bootstrap";
 
-const BoardMiddle = ({ movePlayer }) => {
+const BoardMiddle = ({ movePlayer, currentAction }) => {
   const {players, currentPlayer} = useContext(PlayerContext);
   const [rolledNumber, setRolledNumber] = useState('⚀');
 
@@ -30,7 +30,17 @@ const BoardMiddle = ({ movePlayer }) => {
     >
       {
         players.map(player => (
-          player.number === currentPlayer ? <h3 key={player.number}>{player.name}, roll the die!</h3> : null
+          player.number === currentPlayer ?
+            <div>
+              <h3 key={player.number}>
+                {player.name}, roll the die!
+              </h3>
+              {currentAction ?
+                <span>{player.name + ", " + currentAction}</span>
+                : null
+              }
+            </div>
+          : null
         ))
       }
       <span className="die">{rolledNumber}</span>

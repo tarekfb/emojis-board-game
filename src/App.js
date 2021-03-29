@@ -6,7 +6,7 @@ import PlayerContext from './helpers/PlayerContext';
 import NumberOfPlayers from "./containers/NumberOfPlayers";
 import PlayerNames from "./containers/PlayerNames";
 import Characters from "./containers/Characters";
-import { Actions, actionBase } from "./containers/Actions";
+import { Actions } from "./containers/Actions";
 import Player from "./components/Player";
 import { fetchRandomName } from './helpers/Names';
 import { fetchRandomCharacter } from './helpers/Characters';
@@ -22,7 +22,6 @@ const stages = [
 
 function App() {
   const [players, setPlayers] = useState([]);
-  const [actions, setActions] = useState(actionBase);
   const [stage, setStage] = useState(stages[0]);
   const [currentPlayer, setCurrentPlayer] = useState(1);
 
@@ -58,10 +57,9 @@ function App() {
       case 'characters':
         return <Characters advanceStage={advanceStage}/>;
       case 'actions':
-        return <Actions advanceStage={advanceStage} actions={actions}/>;
+        return <Actions advanceStage={advanceStage}/>;
       case 'game':
         return <Game
-          actions={actions}
           advanceStage={advanceStage}
         />;
       default:

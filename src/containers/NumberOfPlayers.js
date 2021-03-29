@@ -34,6 +34,8 @@ const NumberOfPlayers = ({ advanceStage, assumeDefaultSetup }) => {
       setPlayers(tmpPlayers);
 
       advanceStage();
+    } else {
+     alert("not validated");
     }
   };
 
