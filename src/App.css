@@ -64,9 +64,14 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+
+  /*width: 50%;*/
+  /*max-width: 50%;*/
+  min-width: 100%;
 }
 
 .game-square span {
+  font-size: 55px;
 }
 
 .board-middle {
@@ -80,3 +85,13 @@
 .die {
   font-size: 10em;
 }
+
+.player-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+}
+
+
+

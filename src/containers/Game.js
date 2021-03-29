@@ -1,20 +1,40 @@
-import React, { useContext } from "react";
+import React, {useContext, useState} from "react";
 
 import BoardMiddle from '../components/BoardMiddle';
 import PlayerContext from "../helpers/PlayerContext";
+import { fetchRandomAction } from "../helpers/Actions";
 
 // this component has errors: location is unknown
 // no location property has been implemented for player
 const Game = ({  }) => {
-  const { players } = useContext(PlayerContext);
+  const { players, setPlayers, currentPlayer, setCurrentPlayer } = useContext(PlayerContext);
+  const [ currentAction, setCurrentAction ] = useState("");
   const squares = generateSquares();
 
-  // let playerLocations = [];
-  // if (squares.length > 0) {
-  //   playerLocations = players.map(player => (
-  //     squares[player.location % squares.length]
-  //   ));
-  // }
+  let playerLocations = [];
+  if (squares.length > 0) {
+    playerLocations = players.map(player => (
+      squares[player.location % squares.length]
+    ));
+  }
+
+  const movePlayer = (number) => {
+    let tmpPlayers = players;
+
+    tmpPlayers.forEach(player => {
+      if (player.number === currentPlayer)
+        player.location = player.location + number;
+    });
+
+    setPlayers(tmpPlayers);
+
+    if (currentPlayer + 1 > players.length)
+      setCurrentPlayer(1);
+    else
+      setCurrentPlayer(currentPlayer + 1);
+
+    setCurrentAction(fetchRandomAction());
+  }
 
   function generateSquares() {
     let gridSize = 5;
@@ -35,11 +55,11 @@ const Game = ({  }) => {
         row, col
       };
 
-      if (i % 2 !== 0) {
-        //square.type = player_1.pawn;
-      } else if (i % 2 === 0) {
-        //square.type = player_2.pawn;
-      }
+      // if (i % 2 !== 0) {
+      //   square.type = player_1.pawn;
+      // } else if (i % 2 === 0) {
+      //   square.type = player_2.pawn;
+      // }
 
       // if (i % 3 === 0) {
       //   square.type = "face-off";
@@ -58,7 +78,6 @@ const Game = ({  }) => {
         row --;
       }
     }
-
     return squares;
   };
 
@@ -75,29 +94,29 @@ const Game = ({  }) => {
             className="game-square">
             {
               square.type !== 'start' ?
-                '.' :
-                '.'
+                <span>⬛</span> : // mostly used to keep grids from changing size
+                'start'
             }
           </div>
         ))
       }
-      {/*{*/}
-      {/*  playerLocations.map((location, i) => {*/}
-      {/*    const player = players[i];*/}
-      {/*    return (*/}
-      {/*      <div*/}
-      {/*        key={player.number}*/}
-      {/*        style={{*/}
-      {/*          gridRow: location.row,*/}
-      {/*          gridColumn: location.col*/}
-      {/*        }}*/}
-      {/*        className="player-avatar">*/}
-      {/*          <span>player.character</span>*/}
-      {/*      </div>*/}
-      {/*    )*/}
-      {/*  })*/}
-      {/*}*/}
-     <BoardMiddle  squares={squares} />
+      {
+        playerLocations.map((location, i) => {
+          const player = players[i];
+          return (
+            <div
+              key={player.number}
+              style={{
+                gridRow: location.row,
+                gridColumn: location.col
+              }}
+              className="player-avatar">
+                <span>{player.character}</span>
+            </div>
+          )
+        })
+      }
+     <BoardMiddle squares={squares} movePlayer={movePlayer} currentAction={currentAction} />
     </div>
   )
 };

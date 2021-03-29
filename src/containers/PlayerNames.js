@@ -68,7 +68,6 @@ const PlayerNames = ({ advanceStage }) => {
               <FormControl
                 onChange={event => updatePlayerNameInputValue(event, player.number)}
                 value={playerNameInputValues["value" + player.number]}
-                placeholder="Kalle Kula"
                 aria-label="Name"
               />
             </InputGroup>
