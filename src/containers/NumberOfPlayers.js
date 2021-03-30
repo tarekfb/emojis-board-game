@@ -25,6 +25,7 @@ const NumberOfPlayers = ({ advanceStage, assumeDefaultSetup }) => {
         const player = {
           number: i,
           name: `Player_${i}`,
+          location: 0
         }
         tmpPlayers.push(player);
       }

@@ -10,6 +10,7 @@ import { Actions } from "./containers/Actions";
 import Player from "./components/Player";
 import { fetchRandomName } from './helpers/Names';
 import { fetchRandomCharacter } from './helpers/Characters';
+import {Navbar} from "./components/Navbar";
 
 const stages = [
   "nbrOfPlayers",
@@ -69,6 +70,7 @@ function App() {
 
   return (
     <div className="App">
+      {/*<Navbar />*/}
       <PlayerContext.Provider value={{ players, setPlayers, currentPlayer, setCurrentPlayer }}>
         <Player className=""/>
         {renderSwitch(stage)}
