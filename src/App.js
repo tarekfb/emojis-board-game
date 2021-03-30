@@ -10,7 +10,7 @@ import { Actions } from "./containers/Actions";
 import Player from "./components/Player";
 import { fetchRandomName } from './helpers/Names';
 import { fetchRandomCharacter } from './helpers/Characters';
-import {Navbar} from "./components/Navbar";
+import Navbar from "./components/Navbar";
 
 const stages = [
   "nbrOfPlayers",

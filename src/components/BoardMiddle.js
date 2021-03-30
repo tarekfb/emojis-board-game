@@ -31,8 +31,8 @@ const BoardMiddle = ({ movePlayer, currentAction }) => {
       {
         players.map(player => (
           player.number === currentPlayer ?
-            <div>
-              <h3 key={player.number}>
+            <div key={player.number}>
+              <h3>
                 {player.name}, roll the die!
               </h3>
               {currentAction ?
@@ -47,7 +47,7 @@ const BoardMiddle = ({ movePlayer, currentAction }) => {
       <Button
         className="btn-light"
         style={
-          {fontSize: "30px", cursor: "pointer"}
+          {fontSize: "20px", cursor: "pointer"}
         }
         onClick={rollDie}>
         Roll

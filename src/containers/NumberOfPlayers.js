@@ -33,10 +33,10 @@ const NumberOfPlayers = ({ advanceStage, assumeDefaultSetup }) => {
       // Especially since we don't care about history
       // Probably using spread operator: ..players
       setPlayers(tmpPlayers);
-
-      advanceStage();
+      return true;
     } else {
      alert("not validated");
+     return false;
     }
   };
 
@@ -61,11 +61,16 @@ const NumberOfPlayers = ({ advanceStage, assumeDefaultSetup }) => {
       <Button
         onClick={() => {
           // advanceStage() is called in fun below
-          setNumberOfPlayers();
+          if (setNumberOfPlayers())
+            advanceStage();
           }
         }
         className="mb-3">Continue</Button>
-      <Button onClick={() => assumeDefaultSetup(3)}>Quick play - default setup</Button>
+      <Button onClick={() => {
+        if (setNumberOfPlayers())
+          assumeDefaultSetup(parseInt(nbrOfPlayersInput));
+        }
+      }>Quick play - default setup</Button>
     </div>
   )
 };
