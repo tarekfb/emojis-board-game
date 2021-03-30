@@ -3,6 +3,7 @@ import React, {useContext, useState} from "react";
 import BoardMiddle from '../components/BoardMiddle';
 import PlayerContext from "../helpers/PlayerContext";
 import { fetchRandomAction } from "../helpers/Actions";
+import {Button} from "react-bootstrap";
 
 // this component has errors: location is unknown
 // no location property has been implemented for player
@@ -33,7 +34,9 @@ const Game = ({  }) => {
     else
       setCurrentPlayer(currentPlayer + 1);
 
-    setCurrentAction(fetchRandomAction());
+    setCurrentAction(fetchRandomAction()); // this fetches one, then stays the same.
+    // Declare variable from function, and then use the variable?
+    // think that worked previously
   }
 
   function generateSquares() {
@@ -117,6 +120,7 @@ const Game = ({  }) => {
         })
       }
      <BoardMiddle squares={squares} movePlayer={movePlayer} currentAction={currentAction} />
+     <Button>Return</Button>
     </div>
   )
 };
