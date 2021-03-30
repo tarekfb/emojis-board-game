@@ -3,15 +3,21 @@ function getRandomInt(max) {
 }
 
 function fetchRandomAction() {
-  let action = actions[getRandomInt(0, actions.length + 1)];
-  return action;
+  let action = actions[getRandomInt(actions.length)];
+    switch (action) {
+      case 'drink':
+        return `${action} ${getRandomInt(5)}`;
+      case 'give':
+        return `${action} ${getRandomInt(5)}`;
+      default:
+        return action;
+    }
 }
 
 const actions = [
-  `drink ${getRandomInt(5)}`,
-  `give ${getRandomInt(5)}`,
-  `drink ${getRandomInt(5)}`,
-  `give ${getRandomInt(5)}`
+  `drink`,
+  `give`,
+  'do something else',
 ];
 export { fetchRandomAction };
 

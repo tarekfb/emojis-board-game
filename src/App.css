@@ -49,10 +49,10 @@
 
 .game-board {
   display: grid;
-  width: 60vw;
-  height: 60vw;
-  max-width: 70vh;
-  max-height: 70vh;
+  width: 50vw;
+  height: 50vw;
+  max-width: 60vh;
+  max-height: 60vh;
 }
 
 .game-square {
@@ -71,7 +71,7 @@
 }
 
 .game-square span {
-  font-size: 55px;
+  font-size: 35px;
 }
 
 .board-middle {
@@ -82,15 +82,19 @@
   text-align: center;
 }
 
+.board-middle h3{
+  font-size: 22px;
+}
+
 .die {
-  font-size: 10em;
+  font-size: 8em;
 }
 
 .player-avatar {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 

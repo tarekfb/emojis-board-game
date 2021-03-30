@@ -6,7 +6,7 @@ import { fetchCharacterList } from "../helpers/Characters";
 const Characters = ({ advanceStage }) => {
   const { players, setPlayers, currentPlayer, setCurrentPlayer } = useContext(PlayerContext);
   const [ isCharClickedList, setIsCharClickedList ] = useState({});
-  const [ characters ]  = useState(fetchCharacterList(5));
+  const [ characters ]  = useState(fetchCharacterList(players.length - 1));
 
   useEffect(() => {
     let charState = {};
@@ -50,11 +50,11 @@ const Characters = ({ advanceStage }) => {
             null
         ))
       }
-      <div className="container d-flex flex-row mb-3">
+      <div className="d-flex justify-content-between align-items-center mb-3">
         {
           characters.map(emoji => (
               <div
-                className={isCharClickedList[emoji] ? 'selected' : null}
+                className={isCharClickedList[emoji] ? 'selected mr-3' : "mr-3"}
                 key={emoji}
                 onClick={() => setCharacter(emoji)}
                 style={
