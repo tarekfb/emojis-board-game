@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 
-import PlayerContext from "../helpers/PlayerContext";
+import PlayerContext from "../Contexts/PlayerContext";
 
 const Player = () => {
   const { players } = useContext(PlayerContext);

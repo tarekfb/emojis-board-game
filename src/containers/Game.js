@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 
 import BoardMiddle from '../components/BoardMiddle';
-import PlayerContext from "../helpers/PlayerContext";
+import PlayerContext from "../Contexts/PlayerContext";
 import { fetchRandomAction } from "../helpers/Actions";
 
 const Game = ({  }) => {

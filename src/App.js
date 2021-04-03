@@ -2,7 +2,7 @@ import './App.css';
 import React, {useState} from "react";
 
 import Game from './containers/Game';
-import PlayerContext from './helpers/PlayerContext';
+import PlayerContext from './Contexts/PlayerContext';
 import NumberOfPlayers from "./containers/NumberOfPlayers";
 import PlayerNames from "./containers/PlayerNames";
 import Characters from "./containers/Characters";
@@ -11,6 +11,7 @@ import Player from "./components/Player";
 import { fetchRandomName } from './helpers/Names';
 import { fetchRandomCharacter } from './helpers/Characters';
 import Navbar from "./components/Navbar";
+import ThemeContext from "./Contexts/ThemeContext";
 
 const stages = [
   "nbrOfPlayers",
@@ -33,7 +34,6 @@ function App() {
   };
 
   const assumeDefaultSetup = (nbrOfPlayers) => {
-
     const defaultPlayers = [];
 
     for (let i = 1; i < nbrOfPlayers + 1; i++) {
@@ -70,10 +70,12 @@ function App() {
 
   return (
     <div className="App">
-      {/*<Navbar />*/}
-      <PlayerContext.Provider value={{ players, setPlayers, currentPlayer, setCurrentPlayer }}>
-        <Player className=""/>
-        {renderSwitch(stage)}
+      <Navbar />
+      <PlayerContext.Provider value={{ players, setPlayers, currentPlayer, setCurrentPlayer}}>
+        {/*<ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>*/}
+          <Player className=""/>
+          {renderSwitch(stage)}
+        {/*</ThemeContext.Provider>*/}
       </PlayerContext.Provider>
     </div>
   );
