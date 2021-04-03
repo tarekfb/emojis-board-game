@@ -3,7 +3,7 @@ import React, {useContext, useEffect, useState} from "react";
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-import PlayerContext from "../helpers/PlayerContext";
+import PlayerContext from "../Contexts/PlayerContext";
 import {isString} from "../helpers/Validation";
 
 const PlayerNames = ({ advanceStage }) => {

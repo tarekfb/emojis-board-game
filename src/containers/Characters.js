@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 
-import PlayerContext from "../helpers/PlayerContext";
+import PlayerContext from "../Contexts/PlayerContext";
 import { fetchCharacterList } from "../helpers/Characters";
 
 const Characters = ({ advanceStage }) => {

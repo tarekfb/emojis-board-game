@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import PlayerContext from "../helpers/PlayerContext";
+import PlayerContext from "../Contexts/PlayerContext";
 import {Button} from "react-bootstrap";
 
 const BoardMiddle = ({ movePlayer, currentAction }) => {
