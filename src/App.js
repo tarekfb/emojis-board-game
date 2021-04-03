@@ -72,10 +72,10 @@ function App() {
     <div className="App">
       <Navbar />
       <PlayerContext.Provider value={{ players, setPlayers, currentPlayer, setCurrentPlayer}}>
-        <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
+        {/*<ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>*/}
           <Player className=""/>
           {renderSwitch(stage)}
-        </ThemeContext.Provider>
+        {/*</ThemeContext.Provider>*/}
       </PlayerContext.Provider>
     </div>
   );
