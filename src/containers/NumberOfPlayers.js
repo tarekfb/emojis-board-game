@@ -8,31 +8,14 @@ import PlayerContext from "../Contexts/PlayerContext";
 import Player from "../components/Player";
 import {isNumeric} from "../helpers/Validation";
 
-const NumberOfPlayers = ({ advanceStage, assumeDefaultSetup }) => {
+const NumberOfPlayers = ({ advanceStage, assumeDefaultSetup, initializePlayersList }) => {
   const { players, setPlayers } = useContext(PlayerContext);
   const [ nbrOfPlayersInput, setNbrOfPlayersInput ] = useState("");
 
   const setNumberOfPlayers = () => {
-
-    let value = nbrOfPlayersInput.replace(/\s/g,''); // strip of whitespace
+    let value = nbrOfPlayersInput.replace(/\s/g,''); // strip off whitespace
     if (isNumeric(value, 1)){
-      let tmpPlayers = players;
-
-      // Since we want player.number and player.name to always be >1
-      // we start forloop at 1
-      // But we still want number arg to be accurate, therefore check i < number + 1
-      for (let i = 1; i < parseInt(nbrOfPlayersInput) + 1; i++) {
-        const player = {
-          number: i,
-          name: `Player_${i}`,
-          location: 0
-        }
-        tmpPlayers.push(player);
-      }
-      // Should be an easier way to do this
-      // Especially since we don't care about history
-      // Probably using spread operator: ..players
-      setPlayers(tmpPlayers);
+      setPlayers(initializePlayersList(parseInt(nbrOfPlayersInput)));
       return true;
     } else {
      alert("not validated");
@@ -58,19 +41,22 @@ const NumberOfPlayers = ({ advanceStage, assumeDefaultSetup }) => {
         />
       </InputGroup>
 
+      <div className="container d-flex flex-row justify-content-around">
       <Button
         onClick={() => {
-          // advanceStage() is called in fun below
-          if (setNumberOfPlayers())
-            advanceStage();
+            if (setNumberOfPlayers())
+              advanceStage();
           }
         }
-        className="mb-3">Continue</Button>
-      <Button onClick={() => {
-        if (setNumberOfPlayers())
-          assumeDefaultSetup(parseInt(nbrOfPlayersInput));
-        }
-      }>Quick play - default setup</Button>
+        className="w-50 mr-3">Continue</Button>
+      <Button
+        className="w-50"
+        onClick={() => {
+          if (setNumberOfPlayers())
+            assumeDefaultSetup(parseInt(nbrOfPlayersInput));
+          }
+      }>Default setup</Button>
+      </div>
     </div>
   )
 };

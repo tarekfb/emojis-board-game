@@ -22,4 +22,4 @@ const Actions = ({ advanceStage }) => {
   )
 };
 
-export { Actions };
+export default Actions;

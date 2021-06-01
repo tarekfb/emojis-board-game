@@ -1,23 +1,23 @@
-import React, {useContext} from "react";
-import DarkModeToggle from "react-dark-mode-toggle";
+import React, { useContext } from "react";
 
 import Button from "react-bootstrap/Button";
 import Navbar from 'react-bootstrap/Navbar';
 
-// import ThemeContext from "../Contexts/ThemeContext";
+import { ModalComponent, handleModal } from './Modal';
 
-const NavbarComponent = ({ returnToStart }) => {
+const NavbarComponent = ({ restart }) => {
   // const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
 
   return (
     <Navbar bg="dark" variant="dark" fixed="top">
-      <Navbar.Brand onClick={returnToStart}>TEAM JAT</Navbar.Brand>
+      <Navbar.Brand>TEAM JAT</Navbar.Brand>
       {/*<DarkModeToggle*/}
       {/*  onChange={setIsDarkMode}*/}
       {/*  checked={isDarkMode}*/}
       {/*  size={60}*/}
       {/*/>*/}
-      <Button className="ml-auto" variant="outline-info" onClick={returnToStart}>Quit</Button>
+      <ModalComponent restart={restart} buttonClass={"ml-auto"}></ModalComponent>
+      {/* <Button className="ml-auto" variant="outline-info" onClick={restart}>Restart</Button> */}
     </Navbar>
   )
 };

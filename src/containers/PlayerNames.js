@@ -36,7 +36,7 @@ const PlayerNames = ({ advanceStage }) => {
     for (let i = 0; i < playerNameInputValues.length; i++) {
       let tmpIndex = playerNameInputValues[i];
 
-      if (isString(tmpIndex["value" + (i + 1)], 15) && !alreadyExistsInList() ){
+      if (isString(tmpIndex["value" + (i + 1)], 15)){
         tmpPlayers[i].name = tmpIndex["value" + (i + 1)];
       } else
         validated = false;
@@ -50,13 +50,8 @@ const PlayerNames = ({ advanceStage }) => {
     }
   };
 
-  const alreadyExistsInList = () => {
-    // this method should check if 2x player has same name
-    return false;
-  };
-
   return (
-    <div className="d-flex flex-column">
+    <div className="d-flex flex-column align-items-center justify-content-center">
       <h1>Player names?</h1>
       {
         players.map(player => (

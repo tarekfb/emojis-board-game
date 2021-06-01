@@ -53,7 +53,7 @@ const Characters = ({ advanceStage }) => {
       <div className="d-flex justify-content-between align-items-center mb-3">
         {
           characters.map(emoji => (
-              <div
+              <div  
                 className={isCharClickedList[emoji] ? 'selected mr-3' : "mr-3"}
                 key={emoji}
                 onClick={() => setCharacter(emoji)}

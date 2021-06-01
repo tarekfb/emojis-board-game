@@ -4,7 +4,7 @@ import BoardMiddle from '../components/BoardMiddle';
 import PlayerContext from "../Contexts/PlayerContext";
 import { fetchRandomAction } from "../helpers/Actions";
 
-const Game = ({  }) => {
+const Game = () => {
   const { players, setPlayers, currentPlayer, setCurrentPlayer } = useContext(PlayerContext);
   const [ currentAction, setCurrentAction ] = useState("");
   const squares = generateSquares();
@@ -28,11 +28,11 @@ const Game = ({  }) => {
 
     if (currentPlayer + 1 > players.length)
       setCurrentPlayer(1);
-    else
+      else {
       setCurrentPlayer(currentPlayer + 1);
-      setCurrentAction(fetchRandomAction()); // this fetches one, then stays the same.
-    // Declare variable from function, and then use the variable?
-    // think that worked previously
+      setCurrentAction(fetchRandomAction()); 
+    }
+
   }
 
   function generateSquares() {
